@@ -13,6 +13,7 @@ import Error from "./Error";
 import NotFound from "./NotFound";
 import useAuth from "./useAuth";
 import NeedToLogin from "./NeedToLogin";
+import Textarea from "./Textarea";
 
 const NewPost: React.FC = () => {
   const { signedIn, currentUser } = useAuth();
@@ -74,7 +75,7 @@ const NewPost: React.FC = () => {
         />
 
         <Label htmlFor="content">Content</Label>
-        <textarea
+        <Textarea
           id="content"
           name="content"
           ref={register}
