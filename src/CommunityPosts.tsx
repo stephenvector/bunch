@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import firebase from "firebase/app";
 import "firebase/firestore";
 import { Post } from "./types";
+import Box from "./Box";
 
 type CommunityPostsProps = {
   communityId: string;
@@ -27,6 +28,7 @@ const CommunityPosts: React.FC<CommunityPostsProps> = ({ communityId }) => {
             title: docData.title,
             content: docData.content,
             userId: docData.userId,
+            date: docData.date.toDate(),
           };
         });
 
@@ -39,11 +41,11 @@ const CommunityPosts: React.FC<CommunityPostsProps> = ({ communityId }) => {
   return (
     <div>
       {Object.entries(posts).map(([postId, post]) => (
-        <div key={postId}>
-          <Link to={`/communities/${communityId}/post/${postId}`}>
+        <Box key={postId}>
+          <Link to={`/communities/${communityId}/posts/${postId}`}>
             {post.title}
           </Link>
-        </div>
+        </Box>
       ))}
     </div>
   );
