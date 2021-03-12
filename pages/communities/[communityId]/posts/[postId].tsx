@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { GetServerSidePropsContext } from "next";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import firebase from "firebase/app";
 import "firebase/firestore";
 import { Post as PostType, FetchStatus } from "../../../../types";
@@ -18,7 +17,6 @@ const Post: React.FC<{
   communityId: string;
   postId: string;
 }> = ({ communityId, postId }) => {
-  const router = useRouter();
   const [post, setPost] = useState<PostType | null>(null);
   const [postStatus, setPostStatus] = useState<FetchStatus>("initial");
   const { community, status: communityStatus } = useCommunity(communityId);
