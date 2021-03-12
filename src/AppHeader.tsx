@@ -3,16 +3,15 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { House } from "phosphor-react";
 import useAuth from "./useAuth";
+import Container from "./Container";
 import Button from "./Button";
 
 const StyledAppHeader = styled.header`
-  padding: 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 1200px;
-  margin: 0 auto;
   font-weight: bold;
+  padding: 2rem 0;
   a {
     color: inherit;
     text-decoration: none;
@@ -27,7 +26,7 @@ const StyledAppHeader = styled.header`
     grid-gap: 1rem;
     height: 3rem;
     width: 3rem;
-    background: #56e;
+    background: #00b7ff;
     justify-content: center;
     align-items: center;
     color: #fff;
@@ -39,22 +38,24 @@ function AppHeader() {
   const { signedIn, signOut } = useAuth();
 
   return (
-    <StyledAppHeader>
-      <Link to="/">
-        <House weight="bold" size="1.5rem" />
-      </Link>
+    <Container>
+      <StyledAppHeader>
+        <Link to="/">
+          <House weight="bold" size="1.5rem" />
+        </Link>
 
-      <nav>
-        <Link to="/communities">Communities</Link>
-        {!signedIn && <Link to="/signin">Sign In</Link>}
-        {!signedIn && <Link to="/signup">Sign Up</Link>}
-        {signedIn && (
-          <Button type="button" onClick={signOut}>
-            Sign Out
-          </Button>
-        )}
-      </nav>
-    </StyledAppHeader>
+        <nav>
+          <Link to="/communities">Communities</Link>
+          {!signedIn && <Link to="/signin">Sign In</Link>}
+          {!signedIn && <Link to="/signup">Sign Up</Link>}
+          {signedIn && (
+            <Button type="button" onClick={signOut}>
+              Sign Out
+            </Button>
+          )}
+        </nav>
+      </StyledAppHeader>
+    </Container>
   );
 }
 
