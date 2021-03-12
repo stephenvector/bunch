@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import firebase from "firebase/app";
 import "firebase/firestore";
@@ -14,8 +14,12 @@ import NotFound from "./NotFound";
 import useAuth from "./useAuth";
 import NeedToLogin from "./NeedToLogin";
 import Textarea from "./Textarea";
+import Box from "./Box";
+import Container from "./Container";
+import PageTitle from "./PageTitle";
 
 const NewPost: React.FC = () => {
+  const history = useHistory();
   const { signedIn, currentUser } = useAuth();
   const { communityId } = useParams<{ communityId: string }>();
   const { communities, status } = useCommunities();
@@ -39,18 +43,17 @@ const NewPost: React.FC = () => {
   const onSubmit = useCallback(
     async (values: { title: string; content: string }) => {
       const { title, content } = values;
-      await firebase
-        .firestore()
-        .collection("posts")
-        .doc()
-        .set({
-          title,
-          content,
-          communityId,
-          userId: currentUser ? currentUser.uid : "",
-        });
+      const newDocRef = firebase.firestore().collection("posts").doc();
+      await newDocRef.set({
+        title,
+        content,
+        communityId,
+        date: firebase.firestore.Timestamp.now().toDate(),
+        userId: currentUser ? currentUser.uid : "",
+      });
+      history.replace(`/communities/${communityId}/posts/${newDocRef.id}`);
     },
-    [communityId, currentUser]
+    [communityId, currentUser, history]
   );
 
   if (!signedIn) return <NeedToLogin />;
@@ -62,31 +65,33 @@ const NewPost: React.FC = () => {
   if (community === null) return <NotFound />;
 
   return (
-    <div>
-      <h1>Create A New Post</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Label htmlFor="title">Title</Label>
-        <Input
-          disabled={formState.isSubmitting}
-          type="text"
-          id="title"
-          name="title"
-          ref={register}
-        />
+    <Container>
+      <Box>
+        <PageTitle>Create A New Post</PageTitle>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Label htmlFor="title">Title</Label>
+          <Input
+            disabled={formState.isSubmitting}
+            type="text"
+            id="title"
+            name="title"
+            ref={register}
+          />
 
-        <Label htmlFor="content">Content</Label>
-        <Textarea
-          id="content"
-          name="content"
-          ref={register}
-          disabled={formState.isSubmitting}
-        />
+          <Label htmlFor="content">Content</Label>
+          <Textarea
+            id="content"
+            name="content"
+            ref={register}
+            disabled={formState.isSubmitting}
+          />
 
-        <Button disabled={formState.isSubmitting} type="submit">
-          Create Post
-        </Button>
-      </form>
-    </div>
+          <Button disabled={formState.isSubmitting} type="submit">
+            Create Post
+          </Button>
+        </form>
+      </Box>
+    </Container>
   );
 };
 
