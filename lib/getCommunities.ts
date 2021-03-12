@@ -1,6 +1,6 @@
 import firebase from "firebase/app";
 import "firebase/firestore";
-import { Community } from "../src/types";
+import { Community } from "../types";
 
 export default async function getCommunities() {
   const communities = await firebase

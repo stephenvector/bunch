@@ -3,6 +3,7 @@ export { default as Box } from "./Box";
 export { default as Breadcrumbs } from "./Breadcrumbs";
 export { default as Button } from "./Button";
 export { default as ButtonGroup } from "./ButtonGroup";
+export { default as ButtonLink } from "./ButtonLink";
 export { default as CommunityPosts } from "./CommunityPosts";
 export { default as Container } from "./Container";
 export { default as Error } from "./Error";

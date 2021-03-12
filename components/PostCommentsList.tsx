@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import firebase from "firebase/app";
 import "firebase/firestore";
-import { Comment } from "./types";
+import { Comment } from "../types";
 import Box from "./Box";
 
 type PostCommentsListProps = {

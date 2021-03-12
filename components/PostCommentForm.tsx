@@ -2,12 +2,9 @@ import React, { useCallback } from "react";
 import { useForm } from "react-hook-form";
 import firebase from "firebase/app";
 import "firebase/firestore";
-import Label from "./Label";
-import Button from "./Button";
-import Textarea from "./Textarea";
-import useAuth from "./useAuth";
-import { Comment } from "./types";
-import Box from "./Box";
+import { Box, Button, Label, Textarea } from "./";
+import { useAuth } from "../hooks";
+import { Comment } from "../types";
 
 type PostCommentFormProps = {
   postId: string;

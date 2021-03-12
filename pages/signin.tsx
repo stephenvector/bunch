@@ -1,7 +1,5 @@
 import React from "react";
-import Box from "../src/Box";
-import Container from "../src/Container";
-import SignIn from "../src/SignIn";
+import { Box, Container, SignIn } from "../components";
 
 const SignUpPage: React.FC = () => (
   <Container>

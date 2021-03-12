@@ -1,13 +1,15 @@
 import React, { useMemo } from "react";
 import { GetServerSidePropsContext } from "next";
-import useCommunities from "../../src/useCommunities";
-import { Community as CommunityType } from "../../src/types";
-import Container from "../../src/Container";
-import Loading from "../../src/Loading";
-import NotFound from "../../src/NotFound";
-import Error from "../../src/Error";
-import CommunityPosts from "../../src/CommunityPosts";
-import ButtonLink from "../../src/ButtonLink";
+import { useCommunities } from "../../hooks";
+import { Community as CommunityType } from "../../types";
+import {
+  Container,
+  Loading,
+  NotFound,
+  Error,
+  CommunityPosts,
+  ButtonLink,
+} from "../../components";
 
 const Community: React.FC<{ communityId: string }> = ({ communityId }) => {
   const { communities, status } = useCommunities();

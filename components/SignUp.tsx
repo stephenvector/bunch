@@ -1,10 +1,7 @@
 import React, { useCallback } from "react";
 import { useForm } from "react-hook-form";
-import useAuth from "./useAuth";
-import Button from "./Button";
-import Input from "./Input";
-import Label from "./Label";
-import VerticalGrid from "./VerticalGrid";
+import { useAuth } from "../hooks";
+import { Button, Input, Label, VerticalGrid } from "./";
 
 const SignUp: React.FC = () => {
   const { signUp } = useAuth();

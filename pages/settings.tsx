@@ -1,7 +1,6 @@
 import React from "react";
-import Container from "../src/Container";
-import PageTitle from "../src/PageTitle";
-import useAuth from "../src/useAuth";
+import { Container, PageTitle } from "../components";
+import { useAuth } from "../hooks";
 
 const Settings: React.FC = () => {
   const { currentUser } = useAuth();

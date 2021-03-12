@@ -1,13 +1,10 @@
 import React from "react";
 import { AppProps } from "next/app";
-// import Head from "next/head";
-import AppHeader from "../src/AppHeader";
+import { AppHeader, GlobalStyles } from "../components";
 import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth";
-import GlobalStyles from "../src/GlobalStyles";
-import AuthProvider from "../src/AuthProvider";
-import CommunitiesProvider from "../src/CommunitiesProvider";
+import { AuthProvider, CommunitiesProvider } from "../providers";
 
 if (firebase.apps.length === 0) {
   firebase.initializeApp({

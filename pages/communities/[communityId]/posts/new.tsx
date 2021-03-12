@@ -4,20 +4,21 @@ import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import firebase from "firebase/app";
 import "firebase/firestore";
-import Label from "../../../../src/Label";
-import Input from "../../../../src/Input";
-import Button from "../../../../src/Button";
-import useCommunities from "../../../../src/useCommunities";
-import { Community as CommunityType } from "../../../../src/types";
-import Loading from "../../../../src/Loading";
-import Error from "../../../../src/Error";
-import NotFound from "../../../../src/NotFound";
-import useAuth from "../../../../src/useAuth";
-import NeedToLogin from "../../../../src/NeedToLogin";
-import Textarea from "../../../../src/Textarea";
-import Box from "../../../../src/Box";
-import Container from "../../../../src/Container";
-import PageTitle from "../../../../src/PageTitle";
+import {
+  Label,
+  Input,
+  Button,
+  Loading,
+  Error,
+  NotFound,
+  NeedToLogin,
+  Textarea,
+  Box,
+  Container,
+  PageTitle,
+} from "../../../../components";
+import { useAuth, useCommunities } from "../../../../hooks";
+import { Community as CommunityType } from "../../../../types";
 
 const NewPost: React.FC<{ communityId: string }> = ({ communityId }) => {
   const router = useRouter();

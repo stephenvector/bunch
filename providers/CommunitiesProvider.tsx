@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import firebase from "firebase/app";
 import "firebase/firestore";
-import CommunitiesContext from "./CommunitiesContext";
-import { Community, FetchStatus } from "./types";
+import { CommunitiesContext } from "../contexts";
+import { Community, FetchStatus } from "../types";
 
 const CommunitiesProvider: React.FC = ({ children }) => {
   const [communities, setCommunities] = useState<Record<string, Community>>({});

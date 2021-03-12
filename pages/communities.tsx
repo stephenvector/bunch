@@ -2,9 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { GetServerSidePropsContext } from "next";
 import getCommunities from "../lib/getCommunities";
-import Box from "../src/Box";
-import Container from "../src/Container";
-import ButtonLink from "../src/ButtonLink";
+import { Box, Container, ButtonLink } from "../components";
 
 const Communities: React.FC<{
   communities: ReturnType<typeof getCommunities>;

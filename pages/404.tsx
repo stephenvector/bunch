@@ -1,6 +1,6 @@
 import React from "react";
-import NotFound from "../src/NotFound";
+import { NotFound } from "../components";
 
-export default () => {
+export default function NotFoundPage() {
   return <NotFound />;
-};
+}

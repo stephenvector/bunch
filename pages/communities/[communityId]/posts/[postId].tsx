@@ -4,13 +4,15 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import firebase from "firebase/app";
 import "firebase/firestore";
-import { Post as PostType, FetchStatus } from "../../../../src/types";
-import useCommunity from "../../../../src/useCommunity";
-import PostCommentForm from "../../../../src/PostCommentForm";
-import PostCommentsList from "../../../../src/PostCommentsList";
-import Loading from "../../../../src/Loading";
-import Container from "../../../../src/Container";
-import PageTitle from "../../../../src/PageTitle";
+import { Post as PostType, FetchStatus } from "../../../../types";
+import { useCommunity } from "../../../../hooks";
+import {
+  PostCommentForm,
+  PostCommentsList,
+  Loading,
+  Container,
+  PageTitle,
+} from "../../../../components";
 
 const Post: React.FC<{
   communityId: string;
