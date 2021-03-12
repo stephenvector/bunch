@@ -16,6 +16,14 @@
     "noEmit": true,
     "jsx": "preserve"
   },
-  "include": ["src", "pages"],
+  "include": [
+    "contexts",
+    "components",
+    "hooks",
+    "lib",
+    "pages",
+    "providers",
+    "types"
+  ],
   "exclude": ["node_modules"]
 }
