@@ -5,7 +5,7 @@ type LabelProps = {
 };
 
 const Label = styled.div<LabelProps>`
-  font-size: 0.9rem;
+  font-size: 1rem;
   display: block;
 `;
 
