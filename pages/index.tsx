@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import firebase from "firebase/app";
 import "firebase/firestore";
-import Container from "./Container";
+import Container from "../src/Container";
 
 const Home: React.FC = () => {
   useEffect(() => {

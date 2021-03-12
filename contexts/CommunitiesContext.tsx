@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { Community, FetchStatus } from "./types";
+import { Community, FetchStatus } from "../types";
 
 type CommunitiesContextValue = {
   communities: Record<string, Community>;

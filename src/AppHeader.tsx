@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { House } from "phosphor-react";
-import useAuth from "./useAuth";
+import { useAuth } from "../hooks";
 import Container from "./Container";
 import Button from "./Button";
 
@@ -40,14 +40,14 @@ function AppHeader() {
   return (
     <Container>
       <StyledAppHeader>
-        <Link to="/">
+        <Link href="/">
           <House weight="bold" size="1.5rem" />
         </Link>
 
         <nav>
-          <Link to="/communities">Communities</Link>
-          {!signedIn && <Link to="/signin">Sign In</Link>}
-          {!signedIn && <Link to="/signup">Sign Up</Link>}
+          <Link href="/communities">Communities</Link>
+          {!signedIn && <Link href="/signin">Sign In</Link>}
+          {!signedIn && <Link href="/signup">Sign Up</Link>}
           {signedIn && (
             <Button type="button" onClick={signOut}>
               Sign Out

@@ -1,27 +1,27 @@
 import React, { useCallback, useMemo } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { GetServerSidePropsContext } from "next";
+import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import firebase from "firebase/app";
 import "firebase/firestore";
-import Label from "./Label";
-import Input from "./Input";
-import Button from "./Button";
-import useCommunities from "./useCommunities";
-import { Community as CommunityType } from "./types";
-import Loading from "./Loading";
-import Error from "./Error";
-import NotFound from "./NotFound";
-import useAuth from "./useAuth";
-import NeedToLogin from "./NeedToLogin";
-import Textarea from "./Textarea";
-import Box from "./Box";
-import Container from "./Container";
-import PageTitle from "./PageTitle";
+import Label from "../../../../src/Label";
+import Input from "../../../../src/Input";
+import Button from "../../../../src/Button";
+import useCommunities from "../../../../src/useCommunities";
+import { Community as CommunityType } from "../../../../src/types";
+import Loading from "../../../../src/Loading";
+import Error from "../../../../src/Error";
+import NotFound from "../../../../src/NotFound";
+import useAuth from "../../../../src/useAuth";
+import NeedToLogin from "../../../../src/NeedToLogin";
+import Textarea from "../../../../src/Textarea";
+import Box from "../../../../src/Box";
+import Container from "../../../../src/Container";
+import PageTitle from "../../../../src/PageTitle";
 
-const NewPost: React.FC = () => {
-  const history = useHistory();
+const NewPost: React.FC<{ communityId: string }> = ({ communityId }) => {
+  const router = useRouter();
   const { signedIn, currentUser } = useAuth();
-  const { communityId } = useParams<{ communityId: string }>();
   const { communities, status } = useCommunities();
 
   const community: null | CommunityType = useMemo(() => {
@@ -51,9 +51,9 @@ const NewPost: React.FC = () => {
         date: firebase.firestore.Timestamp.now().toDate(),
         userId: currentUser ? currentUser.uid : "",
       });
-      history.replace(`/communities/${communityId}/posts/${newDocRef.id}`);
+      router.replace(`/communities/${communityId}/posts/${newDocRef.id}`);
     },
-    [communityId, currentUser, history]
+    [communityId, currentUser, router]
   );
 
   if (!signedIn) return <NeedToLogin />;
@@ -94,5 +94,13 @@ const NewPost: React.FC = () => {
     </Container>
   );
 };
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  return {
+    props: {
+      communityId: context.params?.communityId,
+    },
+  };
+}
 
 export default NewPost;

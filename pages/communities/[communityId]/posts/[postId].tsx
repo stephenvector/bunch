@@ -1,20 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { GetServerSidePropsContext } from "next";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import firebase from "firebase/app";
 import "firebase/firestore";
-import { Post as PostType, FetchStatus } from "./types";
-import useCommunity from "./useCommunity";
-import PostCommentForm from "./PostCommentForm";
-import PostCommentsList from "./PostCommentsList";
-import Loading from "./Loading";
-import Container from "./Container";
-import PageTitle from "./PageTitle";
+import { Post as PostType, FetchStatus } from "../../../../src/types";
+import useCommunity from "../../../../src/useCommunity";
+import PostCommentForm from "../../../../src/PostCommentForm";
+import PostCommentsList from "../../../../src/PostCommentsList";
+import Loading from "../../../../src/Loading";
+import Container from "../../../../src/Container";
+import PageTitle from "../../../../src/PageTitle";
 
-const Post: React.FC = () => {
-  const { communityId, postId } = useParams<{
-    communityId: string;
-    postId: string;
-  }>();
+const Post: React.FC<{
+  communityId: string;
+  postId: string;
+}> = ({ communityId, postId }) => {
+  const router = useRouter();
   const [post, setPost] = useState<PostType | null>(null);
   const [postStatus, setPostStatus] = useState<FetchStatus>("initial");
   const { community, status: communityStatus } = useCommunity(communityId);
@@ -68,7 +70,7 @@ const Post: React.FC = () => {
       <PageTitle>{post.title}</PageTitle>
       <div>
         Posted in{" "}
-        <Link to={`/communities/${communityId}`}>{community.name}</Link>
+        <Link href={`/communities/${communityId}`}>{community.name}</Link>
       </div>
       <p>{post.content}</p>
 
@@ -80,5 +82,14 @@ const Post: React.FC = () => {
     </Container>
   );
 };
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  return {
+    props: {
+      communityId: context.params?.communityId,
+      postId: context.params?.postId,
+    },
+  };
+}
 
 export default Post;

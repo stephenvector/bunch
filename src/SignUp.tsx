@@ -1,13 +1,28 @@
 import React, { useCallback } from "react";
+import { useForm } from "react-hook-form";
 import useAuth from "./useAuth";
-import SignUpSignInForm from "./SignUpSignInForm";
+import Button from "./Button";
+import Input from "./Input";
+import Label from "./Label";
+import VerticalGrid from "./VerticalGrid";
 
 const SignUp: React.FC = () => {
   const { signUp } = useAuth();
+  const { handleSubmit, register } = useForm({
+    defaultValues: {
+      email: "",
+      password: "",
+      displayName: "",
+    },
+  });
 
   const onSubmit = useCallback(
-    (values: { email: string; password: string }) => {
-      return signUp(values.email, values.password);
+    async (values: {
+      email: string;
+      password: string;
+      displayName: string;
+    }) => {
+      await signUp(values.email, values.password, values.displayName);
     },
     [signUp]
   );
@@ -15,7 +30,43 @@ const SignUp: React.FC = () => {
   return (
     <div>
       <h1>Sign Up</h1>
-      <SignUpSignInForm onSubmit={onSubmit} />
+      <form noValidate onSubmit={handleSubmit(onSubmit)}>
+        <VerticalGrid>
+          <div>
+            <Label htmlFor="displayName">Display Name</Label>
+            <Input
+              name="displayName"
+              type="text"
+              id="displayName"
+              defaultValue=""
+              ref={register}
+            />
+          </div>
+          <div>
+            <Label htmlFor="email">Email Address</Label>
+            <Input
+              name="email"
+              type="email"
+              id="email"
+              defaultValue=""
+              ref={register}
+            />
+          </div>
+          <div>
+            <Label htmlFor="password">Password</Label>
+            <Input
+              name="password"
+              type="password"
+              id="password"
+              defaultValue=""
+              ref={register}
+            />
+          </div>
+          <div>
+            <Button type="submit">Sign Up</Button>
+          </div>
+        </VerticalGrid>
+      </form>
     </div>
   );
 };

@@ -2,14 +2,14 @@ import React, { useCallback } from "react";
 import { useForm } from "react-hook-form";
 import firebase from "firebase/app";
 import "firebase/firestore";
-import Label from "./Label";
-import Input from "./Input";
-import Box from "./Box";
-import Button from "./Button";
-import Textarea from "./Textarea";
-import Container from "./Container";
-import PageTitle from "./PageTitle";
-import VerticalGrid from "./VerticalGrid";
+import Label from "../../src/Label";
+import Input from "../../src/Input";
+import Box from "../../src/Box";
+import Button from "../../src/Button";
+import Textarea from "../../src/Textarea";
+import Container from "../../src/Container";
+import PageTitle from "../../src/PageTitle";
+import VerticalGrid from "../../src/VerticalGrid";
 
 const NewCommunity: React.FC = () => {
   const { handleSubmit, register, formState } = useForm<{

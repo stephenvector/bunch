@@ -25,13 +25,31 @@ const AuthProvider: React.FC = ({ children }) => {
     firebase.auth().signOut();
   }, []);
 
-  const signUp = useCallback(async (email: string, password: string) => {
-    await firebase.auth().createUserWithEmailAndPassword(email, password);
-  }, []);
+  const signUp = useCallback(
+    async (email: string, password: string, displayName: string) => {
+      const user = await firebase
+        .auth()
+        .createUserWithEmailAndPassword(email, password);
+
+      if (user.user) {
+        await user.user.updateProfile({ displayName });
+      }
+    },
+    []
+  );
 
   const signIn = useCallback(async (email: string, password: string) => {
     await firebase.auth().signInWithEmailAndPassword(email, password);
   }, []);
+
+  const updateProfile = useCallback(
+    async (values: { displayName: string }) => {
+      if (currentUser) {
+        currentUser.updateProfile(values);
+      }
+    },
+    [currentUser]
+  );
 
   return (
     <AuthContext.Provider
@@ -41,6 +59,7 @@ const AuthProvider: React.FC = ({ children }) => {
         signOut,
         signIn,
         signUp,
+        updateProfile,
       }}
     >
       {children}

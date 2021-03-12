@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import firebase from "firebase/app";
 import "firebase/firestore";
-import { Post } from "./types";
+import { Post } from "../types";
 import Box from "./Box";
 
 type CommunityPostsProps = {
@@ -42,7 +42,7 @@ const CommunityPosts: React.FC<CommunityPostsProps> = ({ communityId }) => {
     <div>
       {Object.entries(posts).map(([postId, post]) => (
         <Box key={postId}>
-          <Link to={`/communities/${communityId}/posts/${postId}`}>
+          <Link href={`/communities/${communityId}/posts/${postId}`}>
             {post.title}
           </Link>
         </Box>
