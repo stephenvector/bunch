@@ -1,9 +1,10 @@
 import React from "react";
+import Container from "./Container";
 
 const NotFound: React.FC = () => (
-  <div>
+  <Container>
     <h1>Not Found</h1>
-  </div>
+  </Container>
 );
 
 export default NotFound;
