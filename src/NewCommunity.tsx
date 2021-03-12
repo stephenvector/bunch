@@ -4,7 +4,12 @@ import firebase from "firebase/app";
 import "firebase/firestore";
 import Label from "./Label";
 import Input from "./Input";
+import Box from "./Box";
 import Button from "./Button";
+import Textarea from "./Textarea";
+import Container from "./Container";
+import PageTitle from "./PageTitle";
+import VerticalGrid from "./VerticalGrid";
 
 const NewCommunity: React.FC = () => {
   const { handleSubmit, register, formState } = useForm<{
@@ -29,31 +34,41 @@ const NewCommunity: React.FC = () => {
   );
 
   return (
-    <div>
-      <h1>Create A New Community</h1>
+    <Container>
+      <PageTitle>Create A New Community</PageTitle>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Label htmlFor="name">Name</Label>
-        <Input
-          disabled={formState.isSubmitting}
-          type="text"
-          id="name"
-          name="name"
-          ref={register}
-        />
+        <Box>
+          <VerticalGrid>
+            <div>
+              <Label htmlFor="name">Name</Label>
+              <Input
+                disabled={formState.isSubmitting}
+                type="text"
+                id="name"
+                name="name"
+                ref={register}
+              />
+            </div>
 
-        <Label htmlFor="description">Description</Label>
-        <textarea
-          id="description"
-          name="description"
-          ref={register}
-          disabled={formState.isSubmitting}
-        />
+            <div>
+              <Label htmlFor="description">Description</Label>
+              <Textarea
+                id="description"
+                name="description"
+                ref={register}
+                disabled={formState.isSubmitting}
+              />
+            </div>
 
-        <Button disabled={formState.isSubmitting} type="submit">
-          Create Community
-        </Button>
+            <div>
+              <Button disabled={formState.isSubmitting} type="submit">
+                Create Community
+              </Button>
+            </div>
+          </VerticalGrid>
+        </Box>
       </form>
-    </div>
+    </Container>
   );
 };
 
