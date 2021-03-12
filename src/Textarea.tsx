@@ -5,6 +5,9 @@ const Textarea = styled.textarea`
   font: inherit;
   padding: 0.5rem;
   border: 1px solid #ddd;
+  background: #fff;
+  border-radius: 0.25rem;
+  width: 100%;
 `;
 
 export default Textarea;
