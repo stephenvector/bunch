@@ -5,7 +5,8 @@ const Input = styled.input`
   border: 1px solid #ddd;
   font: inherit;
   padding: 0.5rem;
-  border-radius: 1px;
+  border-radius: 0.25rem;
+  width: 100%;
 `;
 
 export default Input;
